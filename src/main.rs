@@ -1,13 +1,16 @@
 use std::io;
 
 fn main() {
-    println!("Welcome To Dragon's Shell!");
-
+    let entrance_string: &str = "Welcome to DragonShell Version:";
+    let version: &str = "0.01";
+    //print both of the strings
+    println!("{}", entrance_string.to_owned().to_string() + " " + version);
     get_input();
 }
 
 fn get_input() {
-    let buffer: &mut String = "nothing";
+    let mut input = String::new();
     println!("*input noises*");
-    io::stdin().read_line(buffer);
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+    println!("{}", input);
 }
