@@ -1,31 +1,11 @@
-use std::io::{self, stdout, Write};
+use std::io::stdin;
+use std::process::Command;
+fn main(){
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
 
-fn main() {
-    let entrance_string: &str = "Welcome to DragonShell Version:";
-    let version: &str = "0.01";
-    //print both of the strings
-    println!("{}", entrance_string.to_string() + " " + version);
-    loop {
-        print!("$ ");
-        stdout().flush().unwrap();
-        get_input();
-    }
-}
+    // read_line leaves a trailing newline, which trim removes
+    let command = input.trim(); 
 
-fn get_input() {
-    let mut input: String = String::new();
-    io::stdin()
-        .read_line(&mut input)
-        .expect("Failed to read line");
-
-    handle_commands(&input);
-}
-
-fn handle_commands(input: &str) {
-    //let mut command_string: String = String::new();
-    println!("You Entered:");
-    print!("{}", input);
-    
-    /*if input.starts_with("cd ") {
-    }*/
+    Command::new(command).spawn().unwrap();
 }
